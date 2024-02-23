@@ -1,0 +1,55 @@
+#include <fstream>
+#include <unordered_map>
+
+using namespace std;
+
+int p, m, n;
+int fv[10];
+
+int main()
+{
+    ifstream cin("pagini.in");
+    ofstream cout("pagini.out");
+    
+    cin >> n;
+    
+    for(int i = 1; i <= n; i ++){
+        cin >> m;
+        
+        for(int k = 0; k <= 9; k ++){
+            fv[k] = 0;
+        }
+        
+        for(int j = 1; j <= m; j ++){
+            cin >> p;
+            
+            for(int k = 1; k <= p; k ++){
+                int ck = k; 
+                
+                while(ck){
+                    fv[ck % 10] ++;
+                    ck /= 10;
+                }
+            }
+        }
+        
+        int ok = 0;
+            
+        for(int k = 0; k <= 9; k ++){
+            if(fv[k] % 2 == 1){
+                ok ++;
+            }
+            
+            if(ok >= 2){
+                cout << "NU" << '\n';
+                break;
+            }
+        }
+        
+        if(ok == 1 or ok == 0){
+            cout << "DA" << '\n';
+        }
+    }
+
+    return 0;
+}
